@@ -111,15 +111,28 @@ def save_history(history):
         print(f"❌ خطا در ذخیره تاریخچه: {e}")
         traceback.print_exc()
 
+def extract_prices_dict(snapshot):
+    """
+    استخراج دیکشنری قیمت‌ها از یک وضعیت تاریخچه.
+    پشتیبانی از هر دو ساختار قدیمی (items) و جدید (prices).
+    """
+    # ساختار جدید: {"prices": {slug: price, ...}}
+    if "prices" in snapshot:
+        return snapshot["prices"]
+    
+    # ساختار قدیمی: {"items": [{slug, ...}, ...]}
+    if "items" in snapshot:
+        return {item["slug"]: get_price(item) for item in snapshot["items"] if "slug" in item}
+    
+    # ساختار ناشناخته
+    print("⚠️ ساختار تاریخچه ناشناخته است")
+    return {}
+
 def extract_prices_only(items):
-    """استخراج فقط slug و price از آیتم‌ها"""
+    """استخراج فقط slug و price از آیتم‌ها برای ذخیره‌سازی حداقلی"""
     return {item["slug"]: get_price(item) for item in items if "slug" in item}
 
 def calculate_changes(current, previous_prices_dict):
-    """
-    محاسبه تغییرات با استفاده از دیکشنری قیمت‌های قبلی.
-    previous_prices_dict: یک دیکشنری ساده {slug: price} است.
-    """
     changes = {}
     if not current:
         return changes
@@ -303,8 +316,12 @@ def main():
     print(f"✅ مجموعاً {len(current_prices)} ارز دریافت شد")
     
     history = load_history()
-    # استخراج دیکشنری قیمت‌های قبلی
-    previous_prices_dict = history[-1]["prices"] if history else {}
+    
+    # استخراج قیمت‌های قبلی - پشتیبانی از هر دو ساختار قدیم و جدید
+    if history:
+        previous_prices_dict = extract_prices_dict(history[-1])
+    else:
+        previous_prices_dict = {}
     
     changes = calculate_changes(current_prices, previous_prices_dict)
     if not changes:
@@ -323,7 +340,7 @@ def main():
     print(f"❄️ افت‌ها: {', '.join(c['name'] for c in top_losers)}")
     print(f"⚡ نوسان: {len(volatile)} ارز")
     
-    # ذخیره تاریخچه حداقلی
+    # ذخیره تاریخچه با ساختار جدید (حجم کم)
     prices_snapshot = extract_prices_only(current_prices)
     history.append({"timestamp": timestamp, "prices": prices_snapshot})
     if len(history) > MAX_HISTORY_SNAPSHOTS:
