@@ -16,6 +16,7 @@ DASHBOARD_FILE = "index.html"
 TOP_N = 5
 VOLATILITY_THRESHOLD = 2.0
 MAX_RETRIES = 3
+MAX_HISTORY_SNAPSHOTS = 10  # حداکثر تعداد وضعیت‌های ذخیره‌شده در تاریخچه
 
 def get_price(item):
     for field in ["currency_price", "quote", "price"]:
@@ -80,13 +81,21 @@ def fetch_all_prices():
 
 def load_history():
     if os.path.exists(HISTORY_FILE):
-        with open(HISTORY_FILE, encoding="utf-8") as f:
-            return json.load(f)
+        try:
+            with open(HISTORY_FILE, encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"⚠️ خطا در خواندن تاریخچه: {e}")
+            return []
     return []
 
 def save_history(history):
-    with open(HISTORY_FILE, "w", encoding="utf-8") as f:
-        json.dump(history, f, indent=2, ensure_ascii=False)
+    try:
+        with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(history, f, indent=2, ensure_ascii=False)
+        print(f"💾 تاریخچه ({len(history)} وضعیت) ذخیره شد")
+    except Exception as e:
+        print(f"❌ خطا در ذخیره تاریخچه: {e}")
 
 def calculate_changes(current, previous):
     changes = {}
@@ -239,8 +248,23 @@ def write_dashboard():
         f.write(html)
     print("✅ داشبورد ذخیره شد")
 
+def clean_old_json_files():
+    """پاک کردن فایل‌های JSON قدیمی برای جلوگیری از حجم زیاد"""
+    json_files = [HISTORY_FILE, REPORT_FILE, LATEST_FILE]
+    for file in json_files:
+        if os.path.exists(file):
+            try:
+                os.remove(file)
+                print(f"🗑️ فایل قدیمی {file} پاک شد")
+            except Exception as e:
+                print(f"⚠️ خطا در پاک کردن {file}: {e}")
+
 def main():
     print("🚀 شروع تحلیل...")
+
+    # پاک کردن فایل‌های JSON قدیمی برای شروع تمیز
+    clean_old_json_files()
+
     try:
         current_prices = fetch_all_prices()
     except Exception as e:
@@ -257,8 +281,10 @@ def main():
         print("⚠️ به دلیل عدم دریافت داده، فایل‌ها با محتوای خطا ساخته شدند.")
         sys.exit(1)
 
+    # بارگذاری تاریخچه (اگر فایل وجود داشته باشد)
     history = load_history()
     previous = history[-1]["items"] if history else []
+
     changes = calculate_changes(current_prices, previous)
 
     if not changes:
@@ -277,9 +303,12 @@ def main():
     print(f"❄️ افت‌ها: {', '.join(c['name'] for c in top_losers)}")
     print(f"⚡ نوسان: {len(volatile)} ارز")
 
+    # به‌روزرسانی تاریخچه با محدودیت حداکثر ۱۰ وضعیت
     history.append({"timestamp": timestamp, "items": current_prices})
-    if len(history) > 100:
-        history = history[-100:]
+    if len(history) > MAX_HISTORY_SNAPSHOTS:
+        history = history[-MAX_HISTORY_SNAPSHOTS:]
+        print(f"📝 تاریخچه به {MAX_HISTORY_SNAPSHOTS} وضعیت آخر محدود شد")
+
     save_history(history)
 
     write_readme(top_gainers, top_losers, volatile, changes, timestamp)
