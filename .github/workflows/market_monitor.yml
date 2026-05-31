@@ -18,12 +18,12 @@ jobs:
 
     steps:
       - name: 📥 دریافت کدهای مخزن اصلی
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: 🐍 نصب پایتون
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
@@ -40,21 +40,17 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          # تنظیم گیت برای مخزن ai-jury
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
           
-          # کلون کردن مخزن ai-jury
           git clone https://x-access-token:${GH_TOKEN}@github.com/KH-Danial/ai-jury.git /tmp/ai-jury
           
-          # کپی فایل‌های ساخته شده به مخزن ai-jury
           cp -f price_history.json /tmp/ai-jury/ 2>/dev/null || true
           cp -f README.md /tmp/ai-jury/ 2>/dev/null || true
           cp -f market_report.json /tmp/ai-jury/ 2>/dev/null || true
           cp -f latest.json /tmp/ai-jury/ 2>/dev/null || true
           cp -f index.html /tmp/ai-jury/ 2>/dev/null || true
           
-          # commit و push به مخزن ai-jury
           cd /tmp/ai-jury
           git add .
           if git diff --staged --quiet; then
