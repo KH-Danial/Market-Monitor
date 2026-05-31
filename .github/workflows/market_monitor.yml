@@ -5,6 +5,10 @@ on:
     - cron: '*/5 * * * *'
   workflow_dispatch:
 
+# در لاگ‌ها هشدار منسوخ شدن Node.js 20 را می‌بینید. این هشدار است و خطا نیست. برای رفع آن این خط را به workflow اضافه کنید.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+# ----------------------------------------
 concurrency:
   group: market-monitor
   cancel-in-progress: false
