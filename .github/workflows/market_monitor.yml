@@ -43,14 +43,15 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git fetch origin main
-          git reset --soft origin/main
           touch .nojekyll
-          git add .nojekyll price_history.json README.md market_report.json latest.json dashboard.html 2>/dev/null || true
-          if git diff --staged --quiet; then
+          git add .nojekyll price_history.json README.md market_report.json latest.json index.html 2>/dev/null || true
+          if git diff --cached --quiet; then
             echo "📝 تغییری برای commit وجود ندارد"
           else
             git commit -m "به‌روزرسانی خودکار بازار - $(date +'%Y-%m-%d %H:%M')"
-            git push
+            git push origin main || echo "⚠️ push ناموفق - تلاش مجدد با force"
+            if [ $? -ne 0 ]; then
+              git push origin main --force
+            fi
             echo "✅ تغییرات push شد"
           fi
