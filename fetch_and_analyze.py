@@ -251,7 +251,7 @@ def write_dashboard():
     <div class="chart-container"><h2>📈 ۱۰ ارز با بیشترین تغییر</h2><canvas id="chart"></canvas></div>
     <div class="chart-container"><h2>⚡ نوسان‌های بالا</h2><table id="voltbl"><thead><tr><th>ارز</th><th>قیمت</th><th>تغییر</th></tr></thead><tbody></tbody></table></div>
     <script>
-        fetch('latest.json').then(r=>r.json()).then(d=>{
+        fetch('/Market-Monitor/latest.json').then(r=>r.json()).then(d=>{
             document.getElementById('ts').textContent = d.timestamp;
             const all = Object.values(d.all).sort((a,b)=>Math.abs(b.change_percent)-Math.abs(a.change_percent)).slice(0,10);
             new Chart(document.getElementById('chart'),{
@@ -269,7 +269,7 @@ def write_dashboard():
 
 def clean_old_json_files():
     """پاک کردن فایل‌های JSON قدیمی به جز تاریخچه"""
-    # قیمت هیستوری را پاک نکن - برای محاسبه تغییرات لازم است
+    # فقط market_report و latest پاک شوند - price_history نباید پاک شود
     json_files = [REPORT_FILE, LATEST_FILE]
     for file in json_files:
         if os.path.exists(file):
