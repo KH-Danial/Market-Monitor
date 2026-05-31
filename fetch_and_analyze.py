@@ -16,7 +16,7 @@ DASHBOARD_FILE = "index.html"
 TOP_N = 5
 VOLATILITY_THRESHOLD = 2.0
 MAX_RETRIES = 3
-MAX_HISTORY_SNAPSHOTS = 3  # کاهش از ۱۰ به ۳
+MAX_HISTORY_SNAPSHOTS = 10
 
 def get_price(item):
     for field in ["currency_price", "quote", "price"]:
@@ -98,38 +98,31 @@ def load_history():
         return []
 
 def save_history(history):
-    """ذخیره تاریخچه با حجم بهینه - فقط قیمت‌ها ذخیره می‌شوند"""
     try:
         os.makedirs(os.path.dirname(HISTORY_FILE) or ".", exist_ok=True)
         with open(HISTORY_FILE, "w", encoding="utf-8") as f:
             json.dump(history, f, indent=2, ensure_ascii=False)
-        
+        print(f"💾 تاریخچه ({len(history)} وضعیت) در {HISTORY_FILE} ذخیره شد")
         if os.path.exists(HISTORY_FILE):
             size = os.path.getsize(HISTORY_FILE)
-            size_mb = size / (1024 * 1024)
-            print(f"💾 تاریخچه ({len(history)} وضعیت) ذخیره شد")
-            print(f"📏 حجم فایل تاریخچه: {size:,} بایت ({size_mb:.2f} مگابایت)")
+            print(f"📏 حجم فایل تاریخچه: {size:,} بایت")
     except Exception as e:
         print(f"❌ خطا در ذخیره تاریخچه: {e}")
         traceback.print_exc()
-
-def extract_prices_only(items):
-    """استخراج فقط slug و price از آیتم‌ها برای ذخیره‌سازی حداقلی"""
-    return {item["slug"]: get_price(item) for item in items if "slug" in item}
 
 def calculate_changes(current, previous):
     changes = {}
     if not current:
         return changes
-    
-    # previous حالا یک دیکشنری ساده {slug: price} است
-    prev_dict = previous if previous else {}
-    
-    if prev_dict:
+    prev_dict = {}
+    if previous:
+        for item in previous:
+            slug = item.get("slug")
+            if slug:
+                prev_dict[slug] = get_price(item)
         print(f"📊 {len(prev_dict)} قیمت قبلی برای مقایسه موجود است")
     else:
         print("📊 هیچ قیمت قبلی برای مقایسه موجود نیست (اولین اجرا)")
-    
     for item in current:
         slug = item.get("slug")
         if not slug:
@@ -276,6 +269,7 @@ def write_dashboard():
 
 def clean_old_json_files():
     """پاک کردن فایل‌های JSON قدیمی به جز تاریخچه"""
+    # فقط market_report و latest پاک شوند - price_history نباید پاک شود
     json_files = [REPORT_FILE, LATEST_FILE]
     for file in json_files:
         if os.path.exists(file):
@@ -302,13 +296,8 @@ def main():
         write_dashboard()
         sys.exit(1)
     print(f"✅ مجموعاً {len(current_prices)} ارز دریافت شد")
-    
     history = load_history()
-    
-    # استخراج قیمت‌های قبلی از تاریخچه
-    # حالا هر وضعیت تاریخچه یک دیکشنری {slug: price} است
-    previous = history[-1]["prices"] if history else {}
-    
+    previous = history[-1]["items"] if history else []
     changes = calculate_changes(current_prices, previous)
     if not changes:
         print("❌ هیچ تغییری محاسبه نشد")
@@ -316,7 +305,6 @@ def main():
         write_json_files([], [], [], {}, timestamp)
         write_dashboard()
         sys.exit(1)
-    
     sorted_items = sorted(changes.values(), key=lambda x: x["change_percent"], reverse=True)
     top_gainers = sorted_items[:TOP_N]
     top_losers = sorted_items[-TOP_N:]
@@ -325,15 +313,11 @@ def main():
     print(f"🔥 رشدها: {', '.join(c['name'] for c in top_gainers)}")
     print(f"❄️ افت‌ها: {', '.join(c['name'] for c in top_losers)}")
     print(f"⚡ نوسان: {len(volatile)} ارز")
-    
-    # ذخیره تاریخچه حداقلی - فقط قیمت‌ها
-    prices_snapshot = extract_prices_only(current_prices)
-    history.append({"timestamp": timestamp, "prices": prices_snapshot})
+    history.append({"timestamp": timestamp, "items": current_prices})
     if len(history) > MAX_HISTORY_SNAPSHOTS:
         history = history[-MAX_HISTORY_SNAPSHOTS:]
         print(f"📝 تاریخچه به {MAX_HISTORY_SNAPSHOTS} وضعیت آخر محدود شد")
     save_history(history)
-    
     write_readme(top_gainers, top_losers, volatile, changes, timestamp)
     write_json_files(top_gainers, top_losers, volatile, changes, timestamp)
     write_dashboard()
