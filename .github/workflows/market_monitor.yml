@@ -5,10 +5,8 @@ on:
     - cron: '*/5 * * * *'
   workflow_dispatch:
 
-# در لاگ‌ها هشدار منسوخ شدن Node.js 20 را می‌بینید. این هشدار است و خطا نیست. برای رفع آن این خط را به workflow اضافه کنید.
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-# ----------------------------------------
 
 concurrency:
   group: market-monitor
@@ -43,9 +41,10 @@ jobs:
 
       - name: 💾 ثبت تغییرات در مخزن
         run: |
-          touch .nojekyll
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git pull --rebase origin main
+          touch .nojekyll
           git add .nojekyll price_history.json README.md market_report.json latest.json index.html 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "📝 تغییری برای commit وجود ندارد"
