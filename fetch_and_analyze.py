@@ -12,7 +12,7 @@ HISTORY_FILE = "price_history.json"
 README_FILE = "README.md"
 REPORT_FILE = "market_report.json"
 LATEST_FILE = "latest.json"
-DASHBOARD_FILE = "index.html"  # قبلاً dashboard.html بود
+DASHBOARD_FILE = "index.html"
 TOP_N = 5
 VOLATILITY_THRESHOLD = 2.0
 MAX_RETRIES = 3
@@ -80,11 +80,9 @@ def fetch_all_prices():
     return all_items
 
 def load_history():
-    """بارگذاری تاریخچه با مدیریت خطا"""
     if not os.path.exists(HISTORY_FILE):
         print("📂 فایل تاریخچه وجود ندارد. این اولین اجراست.")
         return []
-    
     try:
         with open(HISTORY_FILE, encoding="utf-8") as f:
             content = f.read().strip()
@@ -100,15 +98,11 @@ def load_history():
         return []
 
 def save_history(history):
-    """ذخیره تاریخچه با اطمینان از نوشته شدن"""
     try:
-        # مطمئن شو که دایرکتوری وجود دارد
         os.makedirs(os.path.dirname(HISTORY_FILE) or ".", exist_ok=True)
         with open(HISTORY_FILE, "w", encoding="utf-8") as f:
             json.dump(history, f, indent=2, ensure_ascii=False)
         print(f"💾 تاریخچه ({len(history)} وضعیت) در {HISTORY_FILE} ذخیره شد")
-        
-        # تأیید نوشته شدن
         if os.path.exists(HISTORY_FILE):
             size = os.path.getsize(HISTORY_FILE)
             print(f"📏 حجم فایل تاریخچه: {size:,} بایت")
@@ -120,7 +114,6 @@ def calculate_changes(current, previous):
     changes = {}
     if not current:
         return changes
-    
     prev_dict = {}
     if previous:
         for item in previous:
@@ -130,7 +123,6 @@ def calculate_changes(current, previous):
         print(f"📊 {len(prev_dict)} قیمت قبلی برای مقایسه موجود است")
     else:
         print("📊 هیچ قیمت قبلی برای مقایسه موجود نیست (اولین اجرا)")
-    
     for item in current:
         slug = item.get("slug")
         if not slug:
@@ -147,7 +139,6 @@ def calculate_changes(current, previous):
             "previous_price": prev_price,
             "change_percent": round(chg, 4)
         }
-    
     return changes
 
 def detect_volatility(changes, threshold=VOLATILITY_THRESHOLD):
@@ -163,12 +154,10 @@ def write_readme(top_gainers, top_losers, volatile, changes, timestamp):
         lines.append(f"**🕒 آخرین به‌روزرسانی:** `{timestamp}`")
         lines.append(f"**📈 تعداد ارزهای ردیابی‌شده:** `{len(changes)}`")
         lines.append("")
-        
         has_changes = any(c["change_percent"] != 0.0 for c in changes.values())
         if not has_changes:
             lines.append("> ⚠️ این اولین اجراست. درصد تغییرات از اجرای بعدی محاسبه می‌شود.")
             lines.append("")
-        
         lines.append("---")
         lines.append("## 🔥 بیشترین رشدها")
         lines.append("")
@@ -178,7 +167,6 @@ def write_readme(top_gainers, top_losers, volatile, changes, timestamp):
         else:
             lines.append("داده‌ای موجود نیست")
         lines.append("")
-        
         lines.append("## ❄️ بیشترین افت‌ها")
         lines.append("")
         if top_losers:
@@ -187,7 +175,6 @@ def write_readme(top_gainers, top_losers, volatile, changes, timestamp):
         else:
             lines.append("داده‌ای موجود نیست")
         lines.append("")
-        
         lines.append(f"## ⚡ نوسان‌های بالا (تغییر بیش از {VOLATILITY_THRESHOLD}٪)")
         lines.append("")
         if volatile:
@@ -197,21 +184,17 @@ def write_readme(top_gainers, top_losers, volatile, changes, timestamp):
         else:
             lines.append("نوسان شدیدی مشاهده نشد.")
         lines.append("")
-        
         lines.append("---")
         lines.append("## 📋 ۲۰ ارز برتر")
         lines.append("")
         lines.append("| رتبه | ارز | قیمت (USDT) | تغییر |")
         lines.append("|------|-----|------------|--------|")
-        
         sorted_changes = sorted(changes.values(), key=lambda x: x["change_percent"], reverse=True)
         for i, c in enumerate(sorted_changes[:20], 1):
             emoji = "🟢" if c["change_percent"] > 0 else ("🔴" if c["change_percent"] < 0 else "⚪")
             lines.append(f"| {i} | {c['name']} | {c['current_price']:,.2f} | {c['change_percent']:+.2f}% {emoji} |")
-        
         lines.append("")
         lines.append("*🤖 خودکار توسط GitHub Actions*")
-        
         with open(README_FILE, "w", encoding="utf-8") as f:
             f.write("\n".join(lines))
         print("✅ README ذخیره شد")
@@ -230,8 +213,6 @@ def write_json_files(top_gainers, top_losers, volatile, changes, timestamp):
         }
         with open(REPORT_FILE, "w", encoding="utf-8") as f:
             json.dump(report, f, indent=2, ensure_ascii=False)
-        print(f"✅ {REPORT_FILE} ذخیره شد")
-        
         latest = {
             "timestamp": timestamp,
             "total_coins": len(changes),
@@ -242,7 +223,7 @@ def write_json_files(top_gainers, top_losers, volatile, changes, timestamp):
         }
         with open(LATEST_FILE, "w", encoding="utf-8") as f:
             json.dump(latest, f, indent=2, ensure_ascii=False)
-        print(f"✅ {LATEST_FILE} ذخیره شد")
+        print("✅ فایل‌های JSON ذخیره شدند")
     except Exception as e:
         print(f"❌ خطا در نوشتن JSON: {e}")
         traceback.print_exc()
@@ -287,8 +268,9 @@ def write_dashboard():
     print("✅ داشبورد ذخیره شد")
 
 def clean_old_json_files():
-    """پاک کردن فایل‌های JSON قدیمی"""
-    json_files = [HISTORY_FILE, REPORT_FILE, LATEST_FILE]
+    """پاک کردن فایل‌های JSON قدیمی به جز تاریخچه"""
+    # قیمت هیستوری را پاک نکن - برای محاسبه تغییرات لازم است
+    json_files = [REPORT_FILE, LATEST_FILE]
     for file in json_files:
         if os.path.exists(file):
             try:
@@ -299,63 +281,46 @@ def clean_old_json_files():
 
 def main():
     print("🚀 شروع تحلیل...")
-    
-    # پاک کردن فایل‌های JSON قدیمی
     clean_old_json_files()
-    
     try:
         current_prices = fetch_all_prices()
     except Exception as e:
         print(f"❌ دریافت قیمت‌ها شکست خورد: {e}")
         traceback.print_exc()
         current_prices = []
-    
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    
     if not current_prices:
         print("❌ هیچ داده‌ای دریافت نشد")
         write_readme([], [], [], {}, timestamp)
         write_json_files([], [], [], {}, timestamp)
         write_dashboard()
         sys.exit(1)
-    
     print(f"✅ مجموعاً {len(current_prices)} ارز دریافت شد")
-    
-    # بارگذاری تاریخچه
     history = load_history()
     previous = history[-1]["items"] if history else []
-    
     changes = calculate_changes(current_prices, previous)
-    
     if not changes:
         print("❌ هیچ تغییری محاسبه نشد")
         write_readme([], [], [], {}, timestamp)
         write_json_files([], [], [], {}, timestamp)
         write_dashboard()
         sys.exit(1)
-    
     sorted_items = sorted(changes.values(), key=lambda x: x["change_percent"], reverse=True)
     top_gainers = sorted_items[:TOP_N]
     top_losers = sorted_items[-TOP_N:]
     top_losers.reverse()
     volatile = detect_volatility(changes)
-    
     print(f"🔥 رشدها: {', '.join(c['name'] for c in top_gainers)}")
     print(f"❄️ افت‌ها: {', '.join(c['name'] for c in top_losers)}")
     print(f"⚡ نوسان: {len(volatile)} ارز")
-    
-    # به‌روزرسانی تاریخچه
     history.append({"timestamp": timestamp, "items": current_prices})
     if len(history) > MAX_HISTORY_SNAPSHOTS:
         history = history[-MAX_HISTORY_SNAPSHOTS:]
         print(f"📝 تاریخچه به {MAX_HISTORY_SNAPSHOTS} وضعیت آخر محدود شد")
-    
     save_history(history)
-    
     write_readme(top_gainers, top_losers, volatile, changes, timestamp)
     write_json_files(top_gainers, top_losers, volatile, changes, timestamp)
     write_dashboard()
-    
     print("✅ پایان موفق")
 
 if __name__ == "__main__":
