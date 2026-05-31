@@ -43,9 +43,14 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git pull --rebase origin main
+          
+          # هماهنگ‌سازی با remote بدون conflict
+          git fetch origin main
+          git reset --soft origin/main
+          
           touch .nojekyll
           git add .nojekyll price_history.json README.md market_report.json latest.json index.html 2>/dev/null || true
+          
           if git diff --staged --quiet; then
             echo "📝 تغییری برای commit وجود ندارد"
           else
