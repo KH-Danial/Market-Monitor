@@ -16,7 +16,7 @@ DASHBOARD_FILE = "index.html"
 TOP_N = 5
 VOLATILITY_THRESHOLD = 2.0
 MAX_RETRIES = 3
-MAX_HISTORY_SNAPSHOTS = 10
+MAX_HISTORY_SNAPSHOTS = 3
 
 def get_price(item):
     for field in ["currency_price", "quote", "price"]:
@@ -102,33 +102,39 @@ def save_history(history):
         os.makedirs(os.path.dirname(HISTORY_FILE) or ".", exist_ok=True)
         with open(HISTORY_FILE, "w", encoding="utf-8") as f:
             json.dump(history, f, indent=2, ensure_ascii=False)
-        print(f"💾 تاریخچه ({len(history)} وضعیت) در {HISTORY_FILE} ذخیره شد")
         if os.path.exists(HISTORY_FILE):
             size = os.path.getsize(HISTORY_FILE)
-            print(f"📏 حجم فایل تاریخچه: {size:,} بایت")
+            size_mb = size / (1024 * 1024)
+            print(f"💾 تاریخچه ({len(history)} وضعیت) ذخیره شد")
+            print(f"📏 حجم فایل تاریخچه: {size:,} بایت ({size_mb:.2f} مگابایت)")
     except Exception as e:
         print(f"❌ خطا در ذخیره تاریخچه: {e}")
         traceback.print_exc()
 
-def calculate_changes(current, previous):
+def extract_prices_only(items):
+    """استخراج فقط slug و price از آیتم‌ها"""
+    return {item["slug"]: get_price(item) for item in items if "slug" in item}
+
+def calculate_changes(current, previous_prices_dict):
+    """
+    محاسبه تغییرات با استفاده از دیکشنری قیمت‌های قبلی.
+    previous_prices_dict: یک دیکشنری ساده {slug: price} است.
+    """
     changes = {}
     if not current:
         return changes
-    prev_dict = {}
-    if previous:
-        for item in previous:
-            slug = item.get("slug")
-            if slug:
-                prev_dict[slug] = get_price(item)
-        print(f"📊 {len(prev_dict)} قیمت قبلی برای مقایسه موجود است")
+    
+    if previous_prices_dict:
+        print(f"📊 {len(previous_prices_dict)} قیمت قبلی برای مقایسه موجود است")
     else:
         print("📊 هیچ قیمت قبلی برای مقایسه موجود نیست (اولین اجرا)")
+    
     for item in current:
         slug = item.get("slug")
         if not slug:
             continue
         cur_price = get_price(item)
-        prev_price = prev_dict.get(slug)
+        prev_price = previous_prices_dict.get(slug)
         if prev_price and prev_price > 0:
             chg = ((cur_price - prev_price) / prev_price) * 100
         else:
@@ -269,7 +275,6 @@ def write_dashboard():
 
 def clean_old_json_files():
     """پاک کردن فایل‌های JSON قدیمی به جز تاریخچه"""
-    # فقط market_report و latest پاک شوند - price_history نباید پاک شود
     json_files = [REPORT_FILE, LATEST_FILE]
     for file in json_files:
         if os.path.exists(file):
@@ -296,15 +301,19 @@ def main():
         write_dashboard()
         sys.exit(1)
     print(f"✅ مجموعاً {len(current_prices)} ارز دریافت شد")
+    
     history = load_history()
-    previous = history[-1]["items"] if history else []
-    changes = calculate_changes(current_prices, previous)
+    # استخراج دیکشنری قیمت‌های قبلی
+    previous_prices_dict = history[-1]["prices"] if history else {}
+    
+    changes = calculate_changes(current_prices, previous_prices_dict)
     if not changes:
         print("❌ هیچ تغییری محاسبه نشد")
         write_readme([], [], [], {}, timestamp)
         write_json_files([], [], [], {}, timestamp)
         write_dashboard()
         sys.exit(1)
+    
     sorted_items = sorted(changes.values(), key=lambda x: x["change_percent"], reverse=True)
     top_gainers = sorted_items[:TOP_N]
     top_losers = sorted_items[-TOP_N:]
@@ -313,11 +322,15 @@ def main():
     print(f"🔥 رشدها: {', '.join(c['name'] for c in top_gainers)}")
     print(f"❄️ افت‌ها: {', '.join(c['name'] for c in top_losers)}")
     print(f"⚡ نوسان: {len(volatile)} ارز")
-    history.append({"timestamp": timestamp, "items": current_prices})
+    
+    # ذخیره تاریخچه حداقلی
+    prices_snapshot = extract_prices_only(current_prices)
+    history.append({"timestamp": timestamp, "prices": prices_snapshot})
     if len(history) > MAX_HISTORY_SNAPSHOTS:
         history = history[-MAX_HISTORY_SNAPSHOTS:]
         print(f"📝 تاریخچه به {MAX_HISTORY_SNAPSHOTS} وضعیت آخر محدود شد")
     save_history(history)
+    
     write_readme(top_gainers, top_losers, volatile, changes, timestamp)
     write_json_files(top_gainers, top_losers, volatile, changes, timestamp)
     write_dashboard()
