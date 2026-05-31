@@ -9,6 +9,7 @@ on:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 # ----------------------------------------
+
 concurrency:
   group: market-monitor
   cancel-in-progress: false
@@ -40,7 +41,7 @@ jobs:
         run: python fetch_and_analyze.py
         continue-on-error: true
 
-      - name: 💾 ثبت تغییرات در همین مخزن
+      - name: 💾 ثبت تغییرات در مخزن
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
