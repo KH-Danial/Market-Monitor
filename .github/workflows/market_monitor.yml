@@ -17,7 +17,7 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - name: 📥 دریافت کدهای مخزن اصلی
+      - name: 📥 دریافت کدها
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -36,27 +36,15 @@ jobs:
         run: python fetch_and_analyze.py
         continue-on-error: true
 
-      - name: 💾 ثبت تغییرات در مخزن ai-jury
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: 💾 ثبت تغییرات در همین مخزن
         run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
-          
-          git clone https://x-access-token:${GH_TOKEN}@github.com/KH-Danial/ai-jury.git /tmp/ai-jury
-          
-          cp -f price_history.json /tmp/ai-jury/ 2>/dev/null || true
-          cp -f README.md /tmp/ai-jury/ 2>/dev/null || true
-          cp -f market_report.json /tmp/ai-jury/ 2>/dev/null || true
-          cp -f latest.json /tmp/ai-jury/ 2>/dev/null || true
-          cp -f index.html /tmp/ai-jury/ 2>/dev/null || true
-          
-          cd /tmp/ai-jury
-          git add .
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add price_history.json README.md market_report.json latest.json index.html 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "📝 تغییری برای commit وجود ندارد"
           else
             git commit -m "به‌روزرسانی خودکار بازار - $(date +'%Y-%m-%d %H:%M')"
             git push
-            echo "✅ تغییرات با موفقیت به ai-jury push شد"
+            echo "✅ تغییرات push شد"
           fi
