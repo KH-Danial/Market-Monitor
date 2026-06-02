@@ -1,0 +1,59 @@
+name: 🕵️ Market Monitor
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+concurrency:
+  group: market-monitor
+  cancel-in-progress: false
+
+jobs:
+  fetch-and-analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 دریافت کدها
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🐍 نصب پایتون
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 نصب نیازمندی‌ها
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: 🔍 اجرای اسکریپت تحلیل
+        run: python fetch_and_analyze.py
+
+      - name: 💾 ثبت تغییرات در مخزن
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          # گرفتن آخرین تغییرات remote و نشاندن شاخهٔ محلی روی آن
+          git fetch origin main
+          git reset --soft origin/main
+
+          # حالا فایل‌های جدید را اضافه کن
+          git add .nojekyll price_history.json README.md market_report.json latest.json index.html
+
+          if git diff --cached --quiet; then
+            echo "📝 تغییری برای commit وجود ندارد"
+          else
+            git commit -m "به‌روزرسانی خودکار بازار - $(date +'%Y-%m-%d %H:%M')"
+            git push
+            echo "✅ تغییرات push شد"
+          fi
