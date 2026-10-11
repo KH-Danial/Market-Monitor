@@ -1,155 +1,203 @@
 {
-  "timestamp": "2026-10-11 16:56 (IRST)",
+  "timestamp": "2026-10-11 21:46 (IRST)",
   "top_gainers": [
     {
-      "name": "RLC",
-      "current_price": 1.0569,
-      "previous_price": 0.9975,
-      "change_percent": 5.9549
+      "name": "S",
+      "current_price": 0.0636,
+      "previous_price": 0.04944,
+      "change_percent": 28.6408
     },
     {
-      "name": "ATOM",
-      "current_price": 2.04,
-      "previous_price": 1.934,
-      "change_percent": 5.4809
+      "name": "NEAR",
+      "current_price": 5.739,
+      "previous_price": 5.366,
+      "change_percent": 6.9512
     },
     {
-      "name": "QNT",
-      "current_price": 244.72,
-      "previous_price": 236.37,
-      "change_percent": 3.5326
+      "name": "ENA",
+      "current_price": 0.2396,
+      "previous_price": 0.2246,
+      "change_percent": 6.6785
+    },
+    {
+      "name": "ALGO",
+      "current_price": 0.12507,
+      "previous_price": 0.11836,
+      "change_percent": 5.6691
     },
     {
       "name": "APT",
-      "current_price": 0.8739,
-      "previous_price": 0.8462,
-      "change_percent": 3.2735
-    },
-    {
-      "name": "PUMP",
-      "current_price": 0.0056196,
-      "previous_price": 0.0054418,
-      "change_percent": 3.2673
+      "current_price": 0.9139,
+      "previous_price": 0.8739,
+      "change_percent": 4.5772
     }
   ],
   "top_losers": [
     {
-      "name": "ZIL",
-      "current_price": 0.003539,
-      "previous_price": 0.003594,
-      "change_percent": -1.5303
+      "name": "ATOM",
+      "current_price": 1.955,
+      "previous_price": 2.04,
+      "change_percent": -4.1667
     },
     {
-      "name": "INJ",
-      "current_price": 7.662,
-      "previous_price": 7.731,
-      "change_percent": -0.8925
+      "name": "AERO",
+      "current_price": 0.9451,
+      "previous_price": 0.9735,
+      "change_percent": -2.9173
     },
     {
-      "name": "OP",
-      "current_price": 0.14068,
-      "previous_price": 0.1416,
-      "change_percent": -0.6497
+      "name": "WIN",
+      "current_price": 5.505e-05,
+      "previous_price": 5.531e-05,
+      "change_percent": -0.4701
     },
     {
-      "name": "ALGO",
-      "current_price": 0.11836,
-      "previous_price": 0.11912,
-      "change_percent": -0.638
+      "name": "UNGON",
+      "current_price": 11.049,
+      "previous_price": 11.076,
+      "change_percent": -0.2438
     },
     {
-      "name": "NIGHT",
-      "current_price": 0.049015,
-      "previous_price": 0.049239,
-      "change_percent": -0.4549
+      "name": "SLVON",
+      "current_price": 54.83,
+      "previous_price": 54.86,
+      "change_percent": -0.0547
     }
   ],
   "volatile": [
     {
-      "name": "RLC",
-      "current_price": 1.0569,
-      "previous_price": 0.9975,
-      "change_percent": 5.9549
-    },
-    {
-      "name": "ATOM",
-      "current_price": 2.04,
-      "previous_price": 1.934,
-      "change_percent": 5.4809
-    },
-    {
-      "name": "QNT",
-      "current_price": 244.72,
-      "previous_price": 236.37,
-      "change_percent": 3.5326
-    },
-    {
-      "name": "APT",
-      "current_price": 0.8739,
-      "previous_price": 0.8462,
-      "change_percent": 3.2735
-    },
-    {
-      "name": "PUMP",
-      "current_price": 0.0056196,
-      "previous_price": 0.0054418,
-      "change_percent": 3.2673
-    },
-    {
-      "name": "ICP",
-      "current_price": 3.152,
-      "previous_price": 3.06,
-      "change_percent": 3.0065
-    },
-    {
-      "name": "JUP",
-      "current_price": 0.36593,
-      "previous_price": 0.3562,
-      "change_percent": 2.7316
-    },
-    {
       "name": "S",
-      "current_price": 0.04944,
-      "previous_price": 0.04824,
-      "change_percent": 2.4876
-    },
-    {
-      "name": "ZRO",
-      "current_price": 2.0413,
-      "previous_price": 1.9938,
-      "change_percent": 2.3824
+      "current_price": 0.0636,
+      "previous_price": 0.04944,
+      "change_percent": 28.6408
     },
     {
       "name": "NEAR",
-      "current_price": 5.366,
-      "previous_price": 5.248,
-      "change_percent": 2.2485
+      "current_price": 5.739,
+      "previous_price": 5.366,
+      "change_percent": 6.9512
+    },
+    {
+      "name": "ENA",
+      "current_price": 0.2396,
+      "previous_price": 0.2246,
+      "change_percent": 6.6785
+    },
+    {
+      "name": "ALGO",
+      "current_price": 0.12507,
+      "previous_price": 0.11836,
+      "change_percent": 5.6691
+    },
+    {
+      "name": "APT",
+      "current_price": 0.9139,
+      "previous_price": 0.8739,
+      "change_percent": 4.5772
+    },
+    {
+      "name": "PEPE",
+      "current_price": 4.203e-06,
+      "previous_price": 4.024e-06,
+      "change_percent": 4.4483
+    },
+    {
+      "name": "FIL",
+      "current_price": 1.1485,
+      "previous_price": 1.101,
+      "change_percent": 4.3143
+    },
+    {
+      "name": "ZEC",
+      "current_price": 1283.73,
+      "previous_price": 1231.93,
+      "change_percent": 4.2048
+    },
+    {
+      "name": "ATOM",
+      "current_price": 1.955,
+      "previous_price": 2.04,
+      "change_percent": -4.1667
+    },
+    {
+      "name": "RENDER",
+      "current_price": 1.9956,
+      "previous_price": 1.9174,
+      "change_percent": 4.0784
+    },
+    {
+      "name": "SEI",
+      "current_price": 0.07063,
+      "previous_price": 0.06816,
+      "change_percent": 3.6238
+    },
+    {
+      "name": "ONDO",
+      "current_price": 0.5055,
+      "previous_price": 0.4885,
+      "change_percent": 3.48
+    },
+    {
+      "name": "ZRO",
+      "current_price": 2.1103,
+      "previous_price": 2.0413,
+      "change_percent": 3.3802
+    },
+    {
+      "name": "LINK",
+      "current_price": 13.391,
+      "previous_price": 12.964,
+      "change_percent": 3.2937
     },
     {
       "name": "AVAX",
-      "current_price": 10.541,
-      "previous_price": 10.311,
-      "change_percent": 2.2306
+      "current_price": 10.887,
+      "previous_price": 10.541,
+      "change_percent": 3.2824
     },
     {
-      "name": "ARB",
-      "current_price": 0.1975,
-      "previous_price": 0.1935,
-      "change_percent": 2.0672
+      "name": "INJ",
+      "current_price": 7.905,
+      "previous_price": 7.662,
+      "change_percent": 3.1715
+    },
+    {
+      "name": "AERO",
+      "current_price": 0.9451,
+      "previous_price": 0.9735,
+      "change_percent": -2.9173
+    },
+    {
+      "name": "UNI",
+      "current_price": 7.797,
+      "previous_price": 7.578,
+      "change_percent": 2.8899
+    },
+    {
+      "name": "SUI",
+      "current_price": 1.1322,
+      "previous_price": 1.1007,
+      "change_percent": 2.8618
+    },
+    {
+      "name": "PUMP",
+      "current_price": 0.005779,
+      "previous_price": 0.0056196,
+      "change_percent": 2.8365
     }
   ],
   "all_changes": {
     "BTC": {
       "name": "BTC",
-      "current_price": 83094.6,
-      "previous_price": 83066.6,
-      "change_percent": 0.0337
+      "current_price": 83870.9,
+      "previous_price": 83094.6,
+      "change_percent": 0.9342
     },
     "ETH": {
       "name": "ETH",
-      "current_price": 2504.66,
-      "previous_price": 2504.25,
-      "change_percent": 0.0164
+      "current_price": 2540.96,
+      "previous_price": 2504.66,
+      "change_percent": 1.4493
     },
     "USDT": {
       "name": "USDT",
@@ -159,483 +207,483 @@
     },
     "DOGE": {
       "name": "DOGE",
-      "current_price": 0.08532,
-      "previous_price": 0.08545,
-      "change_percent": -0.1521
+      "current_price": 0.08705,
+      "previous_price": 0.08532,
+      "change_percent": 2.0277
     },
     "SHIB": {
       "name": "SHIB",
-      "current_price": 5.411e-06,
-      "previous_price": 5.408e-06,
-      "change_percent": 0.0555
+      "current_price": 5.505e-06,
+      "previous_price": 5.411e-06,
+      "change_percent": 1.7372
     },
     "SOL": {
       "name": "SOL",
-      "current_price": 109.46,
-      "previous_price": 109.6,
-      "change_percent": -0.1277
+      "current_price": 112.24,
+      "previous_price": 109.46,
+      "change_percent": 2.5397
     },
     "CHZ": {
       "name": "CHZ",
-      "current_price": 0.015379,
-      "previous_price": 0.015442,
-      "change_percent": -0.408
+      "current_price": 0.015762,
+      "previous_price": 0.015379,
+      "change_percent": 2.4904
     },
     "BNB": {
       "name": "BNB",
-      "current_price": 749.0,
-      "previous_price": 747.8,
-      "change_percent": 0.1605
+      "current_price": 754.5,
+      "previous_price": 749.0,
+      "change_percent": 0.7343
     },
     "ETC": {
       "name": "ETC",
-      "current_price": 8.347,
-      "previous_price": 8.339,
-      "change_percent": 0.0959
+      "current_price": 8.487,
+      "previous_price": 8.347,
+      "change_percent": 1.6772
     },
     "ADA": {
       "name": "ADA",
-      "current_price": 0.24758,
-      "previous_price": 0.24702,
-      "change_percent": 0.2267
+      "current_price": 0.25338,
+      "previous_price": 0.24758,
+      "change_percent": 2.3427
     },
     "XRP": {
       "name": "XRP",
-      "current_price": 1.3953,
-      "previous_price": 1.3952,
-      "change_percent": 0.0072
+      "current_price": 1.4166,
+      "previous_price": 1.3953,
+      "change_percent": 1.5266
     },
     "FIL": {
       "name": "FIL",
-      "current_price": 1.101,
-      "previous_price": 1.0997,
-      "change_percent": 0.1182
+      "current_price": 1.1485,
+      "previous_price": 1.101,
+      "change_percent": 4.3143
     },
     "NEAR": {
       "name": "NEAR",
-      "current_price": 5.366,
-      "previous_price": 5.248,
-      "change_percent": 2.2485
+      "current_price": 5.739,
+      "previous_price": 5.366,
+      "change_percent": 6.9512
     },
     "AVAX": {
       "name": "AVAX",
-      "current_price": 10.541,
-      "previous_price": 10.311,
-      "change_percent": 2.2306
+      "current_price": 10.887,
+      "previous_price": 10.541,
+      "change_percent": 3.2824
     },
     "DOT": {
       "name": "DOT",
-      "current_price": 1.2353,
-      "previous_price": 1.2347,
-      "change_percent": 0.0486
+      "current_price": 1.2505,
+      "previous_price": 1.2353,
+      "change_percent": 1.2305
     },
     "SAND": {
       "name": "SAND",
-      "current_price": 0.06524,
-      "previous_price": 0.06543,
-      "change_percent": -0.2904
+      "current_price": 0.06581,
+      "previous_price": 0.06524,
+      "change_percent": 0.8737
     },
     "LINK": {
       "name": "LINK",
-      "current_price": 12.964,
-      "previous_price": 12.907,
-      "change_percent": 0.4416
+      "current_price": 13.391,
+      "previous_price": 12.964,
+      "change_percent": 3.2937
     },
     "TRX": {
       "name": "TRX",
-      "current_price": 0.3307,
-      "previous_price": 0.3306,
-      "change_percent": 0.0302
+      "current_price": 0.3312,
+      "previous_price": 0.3307,
+      "change_percent": 0.1512
     },
     "UNI": {
       "name": "UNI",
-      "current_price": 7.578,
-      "previous_price": 7.541,
-      "change_percent": 0.4907
+      "current_price": 7.797,
+      "previous_price": 7.578,
+      "change_percent": 2.8899
     },
     "LTC": {
       "name": "LTC",
-      "current_price": 63.58,
-      "previous_price": 63.69,
-      "change_percent": -0.1727
+      "current_price": 64.68,
+      "previous_price": 63.58,
+      "change_percent": 1.7301
     },
     "ATOM": {
       "name": "ATOM",
-      "current_price": 2.04,
-      "previous_price": 1.934,
-      "change_percent": 5.4809
+      "current_price": 1.955,
+      "previous_price": 2.04,
+      "change_percent": -4.1667
     },
     "AAVE": {
       "name": "AAVE",
-      "current_price": 167.79,
-      "previous_price": 167.78,
-      "change_percent": 0.006
+      "current_price": 169.71,
+      "previous_price": 167.79,
+      "change_percent": 1.1443
     },
     "INJ": {
       "name": "INJ",
-      "current_price": 7.662,
-      "previous_price": 7.731,
-      "change_percent": -0.8925
+      "current_price": 7.905,
+      "previous_price": 7.662,
+      "change_percent": 3.1715
     },
     "MANA": {
       "name": "MANA",
-      "current_price": 0.095,
-      "previous_price": 0.09479,
-      "change_percent": 0.2215
+      "current_price": 0.09636,
+      "previous_price": 0.095,
+      "change_percent": 1.4316
     },
     "ONE": {
       "name": "ONE",
-      "current_price": 0.0018739,
-      "previous_price": 0.0018807,
-      "change_percent": -0.3616
+      "current_price": 0.0018775,
+      "previous_price": 0.0018739,
+      "change_percent": 0.1921
     },
     "GRT": {
       "name": "GRT",
-      "current_price": 0.027309,
-      "previous_price": 0.026809,
-      "change_percent": 1.865
+      "current_price": 0.028058,
+      "previous_price": 0.027309,
+      "change_percent": 2.7427
     },
     "ZIL": {
       "name": "ZIL",
-      "current_price": 0.003539,
-      "previous_price": 0.003594,
-      "change_percent": -1.5303
+      "current_price": 0.003591,
+      "previous_price": 0.003539,
+      "change_percent": 1.4693
     },
     "CRV": {
       "name": "CRV",
-      "current_price": 0.3664,
-      "previous_price": 0.362,
-      "change_percent": 1.2155
+      "current_price": 0.3705,
+      "previous_price": 0.3664,
+      "change_percent": 1.119
     },
     "VET": {
       "name": "VET",
-      "current_price": 0.007841,
-      "previous_price": 0.007769,
-      "change_percent": 0.9268
+      "current_price": 0.008011,
+      "previous_price": 0.007841,
+      "change_percent": 2.1681
     },
     "ZEC": {
       "name": "ZEC",
-      "current_price": 1231.93,
-      "previous_price": 1224.23,
-      "change_percent": 0.629
+      "current_price": 1283.73,
+      "previous_price": 1231.93,
+      "change_percent": 4.2048
     },
     "ALGO": {
       "name": "ALGO",
-      "current_price": 0.11836,
-      "previous_price": 0.11912,
-      "change_percent": -0.638
+      "current_price": 0.12507,
+      "previous_price": 0.11836,
+      "change_percent": 5.6691
     },
     "ICP": {
       "name": "ICP",
-      "current_price": 3.152,
-      "previous_price": 3.06,
-      "change_percent": 3.0065
+      "current_price": 3.229,
+      "previous_price": 3.152,
+      "change_percent": 2.4429
     },
     "RLC": {
       "name": "RLC",
-      "current_price": 1.0569,
-      "previous_price": 0.9975,
-      "change_percent": 5.9549
+      "current_price": 1.0857,
+      "previous_price": 1.0569,
+      "change_percent": 2.725
     },
     "BCH": {
       "name": "BCH",
-      "current_price": 278.44,
-      "previous_price": 278.08,
-      "change_percent": 0.1295
+      "current_price": 285.13,
+      "previous_price": 278.44,
+      "change_percent": 2.4027
     },
     "COMP": {
       "name": "COMP",
-      "current_price": 24.93,
-      "previous_price": 24.88,
-      "change_percent": 0.201
+      "current_price": 24.97,
+      "previous_price": 24.93,
+      "change_percent": 0.1604
     },
     "XLM": {
       "name": "XLM",
-      "current_price": 0.19804,
-      "previous_price": 0.19532,
-      "change_percent": 1.3926
+      "current_price": 0.203,
+      "previous_price": 0.19804,
+      "change_percent": 2.5045
     },
     "QNT": {
       "name": "QNT",
-      "current_price": 244.72,
-      "previous_price": 236.37,
-      "change_percent": 3.5326
+      "current_price": 245.22,
+      "previous_price": 244.72,
+      "change_percent": 0.2043
     },
     "WIN": {
       "name": "WIN",
-      "current_price": 5.531e-05,
-      "previous_price": 5.503e-05,
-      "change_percent": 0.5088
+      "current_price": 5.505e-05,
+      "previous_price": 5.531e-05,
+      "change_percent": -0.4701
     },
     "HBAR": {
       "name": "HBAR",
-      "current_price": 0.09183,
-      "previous_price": 0.09165,
-      "change_percent": 0.1964
+      "current_price": 0.09323,
+      "previous_price": 0.09183,
+      "change_percent": 1.5246
     },
     "CAKE": {
       "name": "CAKE",
-      "current_price": 2.2466,
-      "previous_price": 2.2484,
-      "change_percent": -0.0801
+      "current_price": 2.2901,
+      "previous_price": 2.2466,
+      "change_percent": 1.9363
     },
     "DASH": {
       "name": "DASH",
-      "current_price": 51.29,
-      "previous_price": 50.56,
-      "change_percent": 1.4438
+      "current_price": 52.61,
+      "previous_price": 51.29,
+      "change_percent": 2.5736
     },
     "RENDER": {
       "name": "RENDER",
-      "current_price": 1.9174,
-      "previous_price": 1.9127,
-      "change_percent": 0.2457
+      "current_price": 1.9956,
+      "previous_price": 1.9174,
+      "change_percent": 4.0784
     },
     "HOODX": {
       "name": "HOODX",
-      "current_price": 109.51,
-      "previous_price": 109.34,
-      "change_percent": 0.1555
+      "current_price": 110.29,
+      "previous_price": 109.51,
+      "change_percent": 0.7123
     },
     "GOOGLX": {
       "name": "GOOGLX",
-      "current_price": 352.12,
-      "previous_price": 351.88,
-      "change_percent": 0.0682
+      "current_price": 352.8,
+      "previous_price": 352.12,
+      "change_percent": 0.1931
     },
     "UNGON": {
       "name": "UNGON",
-      "current_price": 11.076,
-      "previous_price": 11.095,
-      "change_percent": -0.1712
+      "current_price": 11.049,
+      "previous_price": 11.076,
+      "change_percent": -0.2438
     },
     "USOON": {
       "name": "USOON",
-      "current_price": 150.91,
-      "previous_price": 148.7,
-      "change_percent": 1.4862
+      "current_price": 152.5,
+      "previous_price": 150.91,
+      "change_percent": 1.0536
     },
     "GRAM": {
       "name": "GRAM",
-      "current_price": 1.4451,
-      "previous_price": 1.4476,
-      "change_percent": -0.1727
+      "current_price": 1.4634,
+      "previous_price": 1.4451,
+      "change_percent": 1.2663
     },
     "NIGHT": {
       "name": "NIGHT",
-      "current_price": 0.049015,
-      "previous_price": 0.049239,
-      "change_percent": -0.4549
+      "current_price": 0.049047,
+      "previous_price": 0.049015,
+      "change_percent": 0.0653
     },
     "QQQX": {
       "name": "QQQX",
-      "current_price": 754.41,
-      "previous_price": 753.53,
-      "change_percent": 0.1168
+      "current_price": 755.82,
+      "previous_price": 754.41,
+      "change_percent": 0.1869
     },
     "APT": {
       "name": "APT",
-      "current_price": 0.8739,
-      "previous_price": 0.8462,
-      "change_percent": 3.2735
+      "current_price": 0.9139,
+      "previous_price": 0.8739,
+      "change_percent": 4.5772
     },
     "ZRO": {
       "name": "ZRO",
-      "current_price": 2.0413,
-      "previous_price": 1.9938,
-      "change_percent": 2.3824
+      "current_price": 2.1103,
+      "previous_price": 2.0413,
+      "change_percent": 3.3802
     },
     "TSLAX": {
       "name": "TSLAX",
-      "current_price": 383.08,
-      "previous_price": 382.41,
-      "change_percent": 0.1752
+      "current_price": 383.78,
+      "previous_price": 383.08,
+      "change_percent": 0.1827
     },
     "ARB": {
       "name": "ARB",
-      "current_price": 0.1975,
-      "previous_price": 0.1935,
-      "change_percent": 2.0672
+      "current_price": 0.19872,
+      "previous_price": 0.1975,
+      "change_percent": 0.6177
     },
     "CRCLX": {
       "name": "CRCLX",
-      "current_price": 85.73,
-      "previous_price": 85.53,
-      "change_percent": 0.2338
+      "current_price": 86.33,
+      "previous_price": 85.73,
+      "change_percent": 0.6999
     },
     "NVDAX": {
       "name": "NVDAX",
-      "current_price": 231.2,
-      "previous_price": 230.89,
-      "change_percent": 0.1343
+      "current_price": 232.05,
+      "previous_price": 231.2,
+      "change_percent": 0.3676
     },
     "BTT": {
       "name": "BTT",
-      "current_price": 3.657e-07,
-      "previous_price": 3.658e-07,
-      "change_percent": -0.0273
+      "current_price": 3.674e-07,
+      "previous_price": 3.657e-07,
+      "change_percent": 0.4649
     },
     "WLD": {
       "name": "WLD",
-      "current_price": 0.5591,
-      "previous_price": 0.5519,
-      "change_percent": 1.3046
+      "current_price": 0.5648,
+      "previous_price": 0.5591,
+      "change_percent": 1.0195
     },
     "AAPLX": {
       "name": "AAPLX",
-      "current_price": 337.45,
-      "previous_price": 337.21,
-      "change_percent": 0.0712
+      "current_price": 337.53,
+      "previous_price": 337.45,
+      "change_percent": 0.0237
     },
     "PUMP": {
       "name": "PUMP",
-      "current_price": 0.0056196,
-      "previous_price": 0.0054418,
-      "change_percent": 3.2673
+      "current_price": 0.005779,
+      "previous_price": 0.0056196,
+      "change_percent": 2.8365
     },
     "COPXON": {
       "name": "COPXON",
-      "current_price": 86.2619,
-      "previous_price": 86.2843,
-      "change_percent": -0.026
+      "current_price": 86.3612,
+      "previous_price": 86.2619,
+      "change_percent": 0.1151
     },
     "METAX": {
       "name": "METAX",
-      "current_price": 721.6,
-      "previous_price": 721.56,
-      "change_percent": 0.0055
+      "current_price": 724.32,
+      "previous_price": 721.6,
+      "change_percent": 0.3769
     },
     "SPYX": {
       "name": "SPYX",
-      "current_price": 784.67,
-      "previous_price": 783.34,
-      "change_percent": 0.1698
+      "current_price": 784.87,
+      "previous_price": 784.67,
+      "change_percent": 0.0255
     },
     "ENA": {
       "name": "ENA",
-      "current_price": 0.2246,
-      "previous_price": 0.22205,
-      "change_percent": 1.1484
+      "current_price": 0.2396,
+      "previous_price": 0.2246,
+      "change_percent": 6.6785
     },
     "GT": {
       "name": "GT",
-      "current_price": 10.98,
-      "previous_price": 10.87,
-      "change_percent": 1.012
+      "current_price": 11.08,
+      "previous_price": 10.98,
+      "change_percent": 0.9107
     },
     "HYPE": {
       "name": "HYPE",
-      "current_price": 85.41,
-      "previous_price": 84.91,
-      "change_percent": 0.5889
+      "current_price": 86.8,
+      "previous_price": 85.41,
+      "change_percent": 1.6274
     },
     "SLVON": {
       "name": "SLVON",
-      "current_price": 54.86,
-      "previous_price": 54.63,
-      "change_percent": 0.421
+      "current_price": 54.83,
+      "previous_price": 54.86,
+      "change_percent": -0.0547
     },
     "ASTER": {
       "name": "ASTER",
-      "current_price": 0.712,
-      "previous_price": 0.7121,
-      "change_percent": -0.014
+      "current_price": 0.7189,
+      "previous_price": 0.712,
+      "change_percent": 0.9691
     },
     "POL": {
       "name": "POL",
-      "current_price": 0.10161,
-      "previous_price": 0.10184,
-      "change_percent": -0.2258
+      "current_price": 0.10404,
+      "previous_price": 0.10161,
+      "change_percent": 2.3915
     },
     "XAUT": {
       "name": "XAUT",
-      "current_price": 4187.4,
-      "previous_price": 4183.9,
-      "change_percent": 0.0837
+      "current_price": 4191.5,
+      "previous_price": 4187.4,
+      "change_percent": 0.0979
     },
     "BONK": {
       "name": "BONK",
-      "current_price": 3.428e-06,
-      "previous_price": 3.399e-06,
-      "change_percent": 0.8532
+      "current_price": 3.49e-06,
+      "previous_price": 3.428e-06,
+      "change_percent": 1.8086
     },
     "PONS": {
       "name": "PONS",
-      "current_price": 0.3554,
-      "previous_price": 0.3545,
-      "change_percent": 0.2539
+      "current_price": 0.3624,
+      "previous_price": 0.3554,
+      "change_percent": 1.9696
     },
     "ONDO": {
       "name": "ONDO",
-      "current_price": 0.4885,
-      "previous_price": 0.4861,
-      "change_percent": 0.4937
+      "current_price": 0.5055,
+      "previous_price": 0.4885,
+      "change_percent": 3.48
     },
     "NOT": {
       "name": "NOT",
-      "current_price": 0.0004702,
-      "previous_price": 0.0004717,
-      "change_percent": -0.318
+      "current_price": 0.0004767,
+      "previous_price": 0.0004702,
+      "change_percent": 1.3824
     },
     "PEPE": {
       "name": "PEPE",
-      "current_price": 4.024e-06,
-      "previous_price": 4.014e-06,
-      "change_percent": 0.2491
+      "current_price": 4.203e-06,
+      "previous_price": 4.024e-06,
+      "change_percent": 4.4483
     },
     "FLOKI": {
       "name": "FLOKI",
-      "current_price": 2.709e-05,
-      "previous_price": 2.711e-05,
-      "change_percent": -0.0738
+      "current_price": 2.761e-05,
+      "previous_price": 2.709e-05,
+      "change_percent": 1.9195
     },
     "JUP": {
       "name": "JUP",
-      "current_price": 0.36593,
-      "previous_price": 0.3562,
-      "change_percent": 2.7316
+      "current_price": 0.37081,
+      "previous_price": 0.36593,
+      "change_percent": 1.3336
     },
     "OP": {
       "name": "OP",
-      "current_price": 0.14068,
-      "previous_price": 0.1416,
-      "change_percent": -0.6497
+      "current_price": 0.1436,
+      "previous_price": 0.14068,
+      "change_percent": 2.0756
     },
     "SEI": {
       "name": "SEI",
-      "current_price": 0.06816,
-      "previous_price": 0.06745,
-      "change_percent": 1.0526
+      "current_price": 0.07063,
+      "previous_price": 0.06816,
+      "change_percent": 3.6238
     },
     "BABYDOGE": {
       "name": "BABYDOGE",
-      "current_price": 3.868e-10,
-      "previous_price": 3.855e-10,
-      "change_percent": 0.3372
+      "current_price": 3.914e-10,
+      "previous_price": 3.868e-10,
+      "change_percent": 1.1892
     },
     "AERO": {
       "name": "AERO",
-      "current_price": 0.9735,
-      "previous_price": 0.9563,
-      "change_percent": 1.7986
+      "current_price": 0.9451,
+      "previous_price": 0.9735,
+      "change_percent": -2.9173
     },
     "SPCXX": {
       "name": "SPCXX",
-      "current_price": 164.02,
-      "previous_price": 163.82,
-      "change_percent": 0.1221
+      "current_price": 164.29,
+      "previous_price": 164.02,
+      "change_percent": 0.1646
     },
     "SUI": {
       "name": "SUI",
-      "current_price": 1.1007,
+      "current_price": 1.1322,
       "previous_price": 1.1007,
-      "change_percent": 0.0
+      "change_percent": 2.8618
     },
     "S": {
       "name": "S",
-      "current_price": 0.04944,
-      "previous_price": 0.04824,
-      "change_percent": 2.4876
+      "current_price": 0.0636,
+      "previous_price": 0.04944,
+      "change_percent": 28.6408
     }
   }
 }
